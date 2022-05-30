@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 27-Maio-2022 às 15:52
--- Versão do servidor: 10.4.22-MariaDB
--- versão do PHP: 7.4.27
+-- Tempo de geração: 30-Maio-2022 às 04:32
+-- Versão do servidor: 10.4.20-MariaDB
+-- versão do PHP: 8.0.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -29,9 +29,9 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `cardapio` (
   `idPrato` int(11) NOT NULL,
-  `tipo` varchar(50) NOT NULL,
-  `nome` varchar(50) NOT NULL,
-  `descricao` varchar(50) NOT NULL,
+  `tipo` varchar(50) CHARACTER SET utf8 NOT NULL,
+  `nome` varchar(50) CHARACTER SET utf8 NOT NULL,
+  `descricao` varchar(50) CHARACTER SET utf8 NOT NULL,
   `preco` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -40,8 +40,10 @@ CREATE TABLE `cardapio` (
 --
 
 INSERT INTO `cardapio` (`idPrato`, `tipo`, `nome`, `descricao`, `preco`) VALUES
-(1, 'salgado', 'arroz', 'aroz', 10),
-(2, 'doce', 'sorvete', 'gelado', 5);
+(2, 'doce', 'sorvete', 'gelado', 10),
+(4, 'salgado', 'pizza', 'pizza de frango', 20),
+(9, 'bebida', 'suco', 'suco de laranja', 5),
+(10, 'doce', 'pão de mel', 'tamanho mini', 4);
 
 -- --------------------------------------------------------
 
@@ -53,7 +55,7 @@ CREATE TABLE `pedido` (
   `idPedido` int(11) NOT NULL,
   `desconto` float NOT NULL,
   `valor` float NOT NULL,
-  `observacoes` text NOT NULL,
+  `observacoes` text CHARACTER SET utf8 NOT NULL,
   `idUsuario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -81,7 +83,6 @@ CREATE TABLE `pedido_cardapio` (
 --
 
 INSERT INTO `pedido_cardapio` (`idPedido`, `idCardapio`) VALUES
-(2, 1),
 (1, 2);
 
 -- --------------------------------------------------------
@@ -92,7 +93,7 @@ INSERT INTO `pedido_cardapio` (`idPedido`, `idCardapio`) VALUES
 
 CREATE TABLE `usuario` (
   `idUsuario` int(11) NOT NULL,
-  `nome` varchar(50) NOT NULL,
+  `nome` varchar(50) CHARACTER SET utf8 NOT NULL,
   `nivel` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -101,8 +102,9 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`idUsuario`, `nome`, `nivel`) VALUES
-(1, 'felipe', 0),
-(2, 'fernando', 1);
+(1, 'admin', 0),
+(2, 'caixa', 1),
+(3, 'gerente', 2);
 
 --
 -- Índices para tabelas despejadas
@@ -142,7 +144,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de tabela `cardapio`
 --
 ALTER TABLE `cardapio`
-  MODIFY `idPrato` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idPrato` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de tabela `pedido`
@@ -154,7 +156,7 @@ ALTER TABLE `pedido`
 -- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restrições para despejos de tabelas
@@ -170,8 +172,8 @@ ALTER TABLE `pedido`
 -- Limitadores para a tabela `pedido_cardapio`
 --
 ALTER TABLE `pedido_cardapio`
-  ADD CONSTRAINT `pedido_cardapio_ibfk_1` FOREIGN KEY (`idPedido`) REFERENCES `pedido` (`idPedido`),
-  ADD CONSTRAINT `pedido_cardapio_ibfk_2` FOREIGN KEY (`idCardapio`) REFERENCES `cardapio` (`idPrato`);
+  ADD CONSTRAINT `pedido_cardapio_ibfk_1` FOREIGN KEY (`idPedido`) REFERENCES `pedido` (`idPedido`) ON DELETE CASCADE,
+  ADD CONSTRAINT `pedido_cardapio_ibfk_2` FOREIGN KEY (`idCardapio`) REFERENCES `cardapio` (`idPrato`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
