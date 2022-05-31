@@ -25,14 +25,14 @@ if (isset($_GET['id'])) {
     $acao = $_GET['acao'];
     if ($acao == 'excluir') {
         if ($objCardapio->excluirCardapio($conexao, $id)){
-            header("location:../VIEW/tabelaCardapio.php");
+            header("location:../view/tabelaCardapio.php");
         }
     } elseif ($acao == 'editar') {
                 $edicao = true;
     }
 } elseif (isset($_POST['edicao'])) {
         if ($objCardapio->editarCardapio($conexao, $objCardapio))
-            header("location:../VIEW/tabelaCardapio.php");
+            header("location:../view/tabelaCardapio.php");
         else
             echo "Erro ao inserir!";
 } elseif (isset($_POST['codigo'])) {

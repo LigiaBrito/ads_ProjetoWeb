@@ -11,7 +11,7 @@ require "../controller/cardapioController.php";
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../public/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../public/css/style.css">
-	<title>Sistema Lanchonete</title>
+	<title>Sistema Restaurante - Cardapio</title>
 </head>
 <body>
     <div class="container-fluid">
