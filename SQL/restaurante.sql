@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 30-Maio-2022 às 04:32
+-- Tempo de geração: 31-Maio-2022 às 16:51
 -- Versão do servidor: 10.4.20-MariaDB
 -- versão do PHP: 8.0.8
 
@@ -43,7 +43,7 @@ INSERT INTO `cardapio` (`idPrato`, `tipo`, `nome`, `descricao`, `preco`) VALUES
 (2, 'doce', 'sorvete', 'gelado', 10),
 (4, 'salgado', 'pizza', 'pizza de frango', 20),
 (9, 'bebida', 'suco', 'suco de laranja', 5),
-(10, 'doce', 'pão de mel', 'tamanho mini', 4);
+(11, 'prato principal', 'PF', 'prato com arroz, feijão e carne', 16);
 
 -- --------------------------------------------------------
 
@@ -144,7 +144,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de tabela `cardapio`
 --
 ALTER TABLE `cardapio`
-  MODIFY `idPrato` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `idPrato` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de tabela `pedido`
